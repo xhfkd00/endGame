@@ -27,6 +27,7 @@ public class MusicThread extends Thread {
 					.getAudioInputStream(new File("C:\\Users\\MYCOM\\Desktop\\พ๎ด๐ลอม๎\\mugic\\bgm.wav"));
 			backGroundMusicclip = AudioSystem.getClip();
 			backGroundMusicclip.open(backGroundMusic);
+			backGroundMusicclip.loop(Clip.LOOP_CONTINUOUSLY);
 			backGroundMusicclip.start();
 
 		} catch (Exception e) {

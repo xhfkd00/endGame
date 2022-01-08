@@ -11,10 +11,15 @@ public class Archer extends User {
 	int headShotMagicpoint;
 	int stormyPoems;
 	int stormyPoemsMagicpoint;
-	int maxHitPoint;
-	int maxMagicPoint;
-	int gold;
-
+	static int hitPoint;
+	static int magicPoint;
+	static int maxHitPoint;
+	static int maxMagicPoint;
+	static int gold;
+	static int experiencePoint;
+	static int level;
+	static int strikingPower;
+	static int defensivePower;
 	int levelUpHitPoint;
 	int levelUpMagicPoint;
 	int levelUpStrikingPower;
@@ -43,8 +48,9 @@ public class Archer extends User {
 //	static int levelUpDefensivePower = 10;
 
 	public Archer() {
+		level =1;
 		gold = 0;
-		experiencePoint = 0;
+		experiencePoint = 1000;
 		// Triple Shot, Head Shot, Stormy poems
 		hitPoint = 1300;
 		magicPoint = 200;
@@ -90,7 +96,7 @@ public class Archer extends User {
 		System.out.println("궁수의 레벨 : " + level + "  체력 : " + hitPoint + " / " + maxHitPoint + "  마력 : " + magicPoint
 				+ " / " + maxMagicPoint + "  경험치 : " + experiencePoint);
 		Thread.sleep(500);
-		System.out.println("공격력 : " + strikingPower + "  방어력 : " + defensivePower + "  소지금 + " + gold);
+		System.out.println("공격력 : " + strikingPower + "  방어력 : " + defensivePower + "  소지금 : " + gold);
 		System.out.println("아이템 : "+itemName);
 	}
 

@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Map {
 
@@ -6,6 +7,7 @@ public class Map {
 	BossMonster BossMonster = new BossMonster();
 	Archer Archer = new Archer();
 	User User = new User();
+	Scanner scanner = new Scanner(System.in);
 	//생명의샘, 일반던전, 보스던전
 //	change(Archer);
 	public Map(){
@@ -13,16 +15,17 @@ public class Map {
 		
 	}
 	
+	@SuppressWarnings("static-access")
 	public void MapLifeWell() {
 //		Archer Archer = new Archer();
 
-//		System.out.println();
-//		System.out.println("생명의 샘으로 이동하셨습니다.");
-//		System.out.println();
-//		System.out.println("체력과 마력이 모두 회복되었습니다.");
-//		System.out.println();
-//		Archer.hitPoint = Archer.maxHitPoint;
-//		Archer.magicPoint = Archer.maxMagicPoint;
+		System.out.println();
+		System.out.println("생명의 샘으로 이동하셨습니다.");
+		System.out.println();
+		System.out.println("체력과 마력이 모두 회복되었습니다.");
+		System.out.println();
+		Archer.hitPoint = Archer.maxHitPoint;
+		Archer.magicPoint = Archer.maxMagicPoint;
 //		System.out.println("아처 히트포인트 : "+Archer.hitPoint);
 //		System.out.println("아처 맥스 히트포인트 : "+Archer.maxHitPoint);
 //		System.out.println("아처 마나포인트 : " +Archer.magicPoint);
@@ -84,6 +87,33 @@ public class Map {
 		System.out.print(" -> ");
 	}
 	
+	@SuppressWarnings("static-access")
+	public void leveruptest() {
+		System.out.println();
+		System.out.println("1. 레벨업  2. 돌아가기");
+		System.out.print(" -> ");
+		int levelUp = scanner.nextInt();
+		if (Archer.experiencePoint >= Character.levelUpPoint) { // 레벨업
+//			Map.ArcherLevelUp();
+			Archer.maxHitPoint = Archer.hitPoint + Archer.levelUpHitPoint;
+			Archer.maxMagicPoint += Archer.levelUpMagicPoint;
+			Archer.strikingPower += Archer.levelUpStrikingPower;
+			Archer.defensivePower += Archer.levelUpDefensivePower;
+			Archer.level = Archer.level + 1;
+			Archer.experiencePoint -= Character.levelUpPoint;
+
+		} else if (levelUp == 2) { // 돌아가기
+//			break;
+		} else if (Character.experiencePoint < 100) {
+			System.out.println("경험치가 부족합니다.");
+			System.out.println();
+
+		} else {
+			System.out.println("잘못 입력하셨습니다.");
+			System.out.println();
+//			break;
+		}
+	}
 
 }
 //levelUpHitPoint = 50;

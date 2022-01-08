@@ -14,6 +14,7 @@ public class Character {
     int defensivePower; // 방어력 속성
     int gold;
     int levelUpPoint = 100;
+    int eventGold = 1000;
 
 //	기능, 메서드
 	public void Attack() throws InterruptedException {	

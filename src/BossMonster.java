@@ -4,6 +4,7 @@ public class BossMonster extends Monster {
 
 	MusicThread MusicThread = new MusicThread();
 	Archer Archer = new Archer();
+	
 	int swingTail;
 	int energyExplosion;
 	int maxHitPoint;

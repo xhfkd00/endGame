@@ -18,7 +18,10 @@ public class Main {
 //		MusicStartThread MusicStartThread = new MusicStartThread();
 		MusicThread MusicThread = new MusicThread();
 		MusicThread.start();
-//		MusicThread.BallockAttack();
+		EventThread eventThread = new EventThread();
+//		eventThread.start();
+		
+
 
 		System.out.print("엔드");
 		Thread.sleep(500);
@@ -269,6 +272,8 @@ public class Main {
 				}
 //				break;
 			} else if (Job_Choice == 2) { // 궁수 선택
+				eventThread.start();
+				
 				System.out.println();
 				System.out.print("궁수를 ");
 				Thread.sleep(500);
@@ -498,35 +503,35 @@ public class Main {
 					} else if (Move == 3) { // 생명의 샘 이동
 						Map.MapLifeWell();
 
-						Archer.hitPoint = Archer.maxHitPoint;
-						Archer.magicPoint = Archer.maxMagicPoint;
+//						Archer.hitPoint = Archer.maxHitPoint;
+//						Archer.magicPoint = Archer.maxMagicPoint;
 
 					} else if (Move == 4) { // 레벨업의 전당
-						Map.LevelUpHall();
-						System.out.println();
-						System.out.println("1. 레벨업  2. 돌아가기");
-						System.out.print(" -> ");
-						int levelUp = scanner.nextInt();
-						if (Archer.experiencePoint >= Character.levelUpPoint) { // 레벨업
-							Map.ArcherLevelUp();
-							Archer.maxHitPoint = Archer.hitPoint + Archer.levelUpHitPoint;
-							Archer.maxMagicPoint += Archer.levelUpMagicPoint;
-							Archer.strikingPower += Archer.levelUpStrikingPower;
-							Archer.defensivePower += Archer.levelUpDefensivePower;
-							Archer.level = Archer.level + 1;
-							Archer.experiencePoint -= Character.levelUpPoint;
-
-						} else if (levelUp == 2) { // 돌아가기
-							break;
-						} else if (Character.experiencePoint < 100) {
-							System.out.println("경험치가 부족합니다.");
-							System.out.println();
-
-						} else {
-							System.out.println("잘못 입력하셨습니다.");
-							System.out.println();
-							break;
-						}
+						Map.leveruptest();
+//						System.out.println();
+//						System.out.println("1. 레벨업  2. 돌아가기");
+//						System.out.print(" -> ");
+//						int levelUp = scanner.nextInt();
+//						if (Archer.experiencePoint >= Character.levelUpPoint) { // 레벨업
+//							Map.ArcherLevelUp();
+//							Archer.maxHitPoint = Archer.hitPoint + Archer.levelUpHitPoint;
+//							Archer.maxMagicPoint += Archer.levelUpMagicPoint;
+//							Archer.strikingPower += Archer.levelUpStrikingPower;
+//							Archer.defensivePower += Archer.levelUpDefensivePower;
+//							Archer.level = Archer.level + 1;
+//							Archer.experiencePoint -= Character.levelUpPoint;
+//
+//						} else if (levelUp == 2) { // 돌아가기
+//							break;
+//						} else if (Character.experiencePoint < 100) {
+//							System.out.println("경험치가 부족합니다.");
+//							System.out.println();
+//
+//						} else {
+//							System.out.println("잘못 입력하셨습니다.");
+//							System.out.println();
+//							break;
+//						}
 
 					} else if (Move == 5) {
 						Map.ArcherItem();
