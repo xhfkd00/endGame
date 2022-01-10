@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Archer extends User {
 
 	NomalMonster NomalMonster = new NomalMonster();
-//	BossMonster BossMonster = new BossMonster();
+	MusicThread MusicThread = new MusicThread();
 
 	int tripleShot;
 	int tripleShotMagicpoint;
@@ -50,11 +50,11 @@ public class Archer extends User {
 	public Archer() {
 		level =1;
 		gold = 0;
-		experiencePoint = 1000;
+		experiencePoint = 0;
 		// Triple Shot, Head Shot, Stormy poems
-		hitPoint = 1300;
+		hitPoint = 400;
 		magicPoint = 200;
-		strikingPower = 100;
+		strikingPower = 50;
 		defensivePower = 20;
 		tripleShot = strikingPower * 3;
 		tripleShotMagicpoint = 30;
@@ -113,7 +113,8 @@ public class Archer extends User {
 				- (strikingPower - NomalMonster.greanSnailDefensivePower);
 		hitPoint = hitPoint - (NomalMonster.strikingPower - defensivePower);
 
-		while (NomalMonster.greanSnailHitPoint > 0) {
+
+		while (NomalMonster.greanSnailHitPoint > 0/*&& hitPoint > 0*/) {
 
 			if (NomalMonster.greanSnailHitPoint > 0) {
 				System.out.println();
@@ -145,6 +146,7 @@ public class Archer extends User {
 			System.out.println();
 			System.out.println("캐릭터가 죽었습니다.");
 			System.out.println();
+			
 
 		}
 
@@ -470,8 +472,14 @@ public class Archer extends User {
 
 	static BossMonster BossMonster = new BossMonster();
 	// 보스몬스터 사냥
-	public void AttackToBossMonster() {
-		BossMonster.hitPoint = BossMonster.hitPoint - (strikingPower -BossMonster.defensivePower);
+	public void AttackToBossMonster() throws InterruptedException {
+		int attackPower = strikingPower -BossMonster.defensivePower;
+
+		if (strikingPower -BossMonster.defensivePower < 0) {
+			attackPower = 0;
+		}
+		BossMonster.hitPoint = BossMonster.hitPoint - attackPower;
+		
 		while (BossMonster.hitPoint > 0) {
 
 			if (BossMonster.hitPoint > 0) {
@@ -485,17 +493,26 @@ public class Archer extends User {
 
 		}
 		if ( BossMonster.hitPoint <= 0) {
+			MusicThread.Done();
 			System.out.println();
 			System.out.println("발록을 처치했습니다!");
 			System.out.println();
 			System.out.println("발록처치하기 성공!!!!!!!!!");
+			Thread.sleep(30000);
+			MusicThread.DoneClose();
 			
 			System.exit(0);
 		}
 	}
-	public void TripleShotToBallock() {
-		BossMonster.hitPoint = BossMonster.hitPoint - (tripleShot -BossMonster.defensivePower);
+	public void TripleShotToBallock() throws InterruptedException {
+		int attackPower = tripleShot -BossMonster.defensivePower;
+
+		if (tripleShot -BossMonster.defensivePower < 0) {
+			attackPower = 0;
+		}
+		BossMonster.hitPoint = BossMonster.hitPoint - attackPower;
 		magicPoint = magicPoint - tripleShotMagicpoint;
+		
 		while (BossMonster.hitPoint > 0) {
 
 			if (BossMonster.hitPoint > 0) {
@@ -509,17 +526,25 @@ public class Archer extends User {
 
 		}
 		if ( BossMonster.hitPoint <= 0) {
+			MusicThread.Done();
 			System.out.println();
 			System.out.println("발록을 처치했습니다!");
 			System.out.println();
 			System.out.println("발록처치하기 성공!!!!!!!!!");
+			Thread.sleep(30000);
+			MusicThread.DoneClose();
 			
 			System.exit(0);
 		}
 	}
 	
-	public void HeadShotToBallock() {
-		BossMonster.hitPoint = BossMonster.hitPoint - (headShot -BossMonster.defensivePower);
+	public void HeadShotToBallock() throws InterruptedException {
+		int attackPower = headShot -BossMonster.defensivePower;
+
+		if (headShot -BossMonster.defensivePower < 0) {
+			attackPower = 0;
+		}
+		BossMonster.hitPoint = BossMonster.hitPoint - attackPower;
 		magicPoint = magicPoint - headShotMagicpoint;
 		while (BossMonster.hitPoint > 0) {
 
@@ -534,17 +559,26 @@ public class Archer extends User {
 
 		}
 		if ( BossMonster.hitPoint <= 0) {
+
+			MusicThread.Done();
 			System.out.println();
 			System.out.println("발록을 처치했습니다!");
 			System.out.println();
 			System.out.println("발록처치하기 성공!!!!!!!!!");
+			Thread.sleep(30000);
+			MusicThread.DoneClose();
 			
 			System.exit(0);
 		}
 	}
 	
-	public void StormyPoemsToBallock() {
-		BossMonster.hitPoint = BossMonster.hitPoint - (stormyPoems -BossMonster.defensivePower);
+	public void StormyPoemsToBallock() throws InterruptedException {
+		int attackPower = stormyPoems -BossMonster.defensivePower;
+
+		if (stormyPoems -BossMonster.defensivePower < 0) {
+			attackPower = 0;
+		}
+		BossMonster.hitPoint = BossMonster.hitPoint - attackPower;
 		magicPoint = magicPoint - stormyPoemsMagicpoint;
 		while (BossMonster.hitPoint > 0) {
 
@@ -559,10 +593,13 @@ public class Archer extends User {
 
 		}
 		if ( BossMonster.hitPoint <= 0) {
+			MusicThread.Done();
 			System.out.println();
 			System.out.println("발록을 처치했습니다!");
 			System.out.println();
 			System.out.println("발록처치하기 성공!!!!!!!!!");
+			Thread.sleep(30000);
+			MusicThread.DoneClose();
 			
 			System.exit(0);
 		}

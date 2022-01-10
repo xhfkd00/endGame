@@ -19,7 +19,8 @@ public class Main {
 		MusicThread MusicThread = new MusicThread();
 		MusicThread.start();
 		EventThread eventThread = new EventThread();
-//		eventThread.start();
+
+
 		
 
 
@@ -305,12 +306,13 @@ public class Main {
 					System.out.println("1. 일반몬스터  2. 보스몬스터  3. 생명의 샘 ");
 					System.out.println("4. 레벨업의 전당  5. 아이템 상점");
 					System.out.print(" -> ");
+
 					int Move = scanner.nextInt();
 					if (Move == 1) { // 일반몬스터 이동
 						Map.NomalMonsterHunting(); // 맵이동
 						Map.NoMalMonsterType(); // 몬스터 1. 초록 달팽이 2. 빨간 달팽이
 						int MonsterType = scanner.nextInt();
-						if (MonsterType == 1) { // 1. 초록 달팽이
+						if (MonsterType == 1 && Archer.hitPoint > 0) { // 1. 초록 달팽이
 //							NomalMonster.GreanSnail();
 							System.out.println();
 							System.out.println("초록 달팽이를 만났습니다.");
@@ -320,6 +322,14 @@ public class Main {
 							while (NomalMonster.greanSnailHitPoint > 0) {
 								Archer.Behavior(); // 1. 일반공격 2. 트리플 샷 3. 헤드 샷 4. 폭풍의 시 5. 돌아가기
 								int behavior = scanner.nextInt();
+								if (Archer.hitPoint <= 0) {
+									System.out.println();
+									System.out.println("체력이 부족합니다.");
+									System.out.println();
+									System.out.println("생명의 샘으로 이동하여 체력을 회복해주세요.");
+									System.out.println();
+									break;
+								}
 								if (behavior == 1) {
 									Archer.Attack();
 									MusicThread.Attack(); // 달팽이 등장음
@@ -367,6 +377,14 @@ public class Main {
 							while (NomalMonster.redSnailHitPoint > 0) {
 								Archer.Behavior();// 1. 일반공격 2. 트리플 샷 3. 헤드 샷 4. 폭풍의 시 5. 돌아가기
 								int behavior = scanner.nextInt();
+								if (Archer.hitPoint <= 0) {
+									System.out.println();
+									System.out.println("체력이 부족합니다.");
+									System.out.println();
+									System.out.println("생명의 샘으로 이동하여 체력을 회복해주세요.");
+									System.out.println();
+									break;
+								}
 								if (behavior == 1) {
 									MusicThread.Attack(); // 아처 기본공격 효과음
 									Thread.sleep(500); // 효과음 지속시간
@@ -418,6 +436,14 @@ public class Main {
 							Random Random = new Random();
 							int monster = Random.nextInt(3) + 1; // 몬스터 공격 유형
 							int behavior = scanner.nextInt();
+							if (Archer.hitPoint <= 0) {
+								System.out.println();
+								System.out.println("체력이 부족합니다.");
+								System.out.println();
+								System.out.println("생명의 샘으로 이동하여 체력을 회복해주세요.");
+								System.out.println();
+								break;
+							}
 
 							if (BossMonster.hitPoint > 0 || Archer.hitPoint > 0) {
 								if (behavior == 1) {
@@ -548,7 +574,7 @@ public class Main {
 								Archer.itemName = User.silverBow;
 								Archer.strikingPower += User.silevelerSwordAttackPower;
 								Archer.gold -= User.silevelerSwordPrice;
-							} else if (Archer.gold < User.silevelerSwordPrice) {
+							} else if (purchase==1 &&Archer.gold < User.silevelerSwordPrice) {
 								System.out.println();
 								System.out.println("소지금이 부족합니다.");
 								System.out.println();
@@ -573,7 +599,7 @@ public class Main {
 								Archer.itemName = User.fireBow;
 								Archer.strikingPower += User.fireBowAttackPower;
 								Archer.gold -= User.fireBowPrice;
-							} else if (Archer.gold < User.fireBowPrice) {
+							} else if (purchase==1 && Archer.gold < User.fireBowPrice) {
 								System.out.println();
 								System.out.println("소지금이 부족합니다.");
 								System.out.println();
@@ -599,7 +625,7 @@ public class Main {
 								Archer.itemName = User.nightmareBow;
 								Archer.strikingPower += User.nightmareBowAttackPower;
 								Archer.gold -= User.nightmareBowPrice;
-							} else if (Archer.gold < User.fireBowPrice) {
+							} else if (purchase==1 && Archer.gold < User.fireBowPrice) {
 								System.out.println();
 								System.out.println("소지금이 부족합니다.");
 								System.out.println();
@@ -616,6 +642,11 @@ public class Main {
 						} else if (ItemChoice == 4) {
 							break;
 						}
+					}
+					else {
+						System.out.println();
+						System.out.println("잘못 선택 하셨습니다.");
+						System.out.println();
 					}
 				}
 

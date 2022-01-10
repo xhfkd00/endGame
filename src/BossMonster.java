@@ -12,9 +12,9 @@ public class BossMonster extends Monster {
 	// Ballock
 	public BossMonster() {
 
-		hitPoint = 1000;
-		strikingPower = 10;
-		defensivePower = 0;
+		hitPoint = 100000;
+		strikingPower = 1000;
+		defensivePower = 1000;
 		swingTail = strikingPower * 2;
 		energyExplosion = strikingPower * 4;
 		maxHitPoint = hitPoint;
@@ -24,6 +24,7 @@ public class BossMonster extends Monster {
 
 	@Override
 	public void Attack() throws InterruptedException {
+
 		MusicThread.BallockAttack();
 		Thread.sleep(3000);
 		MusicThread.BallockAttackClose();
@@ -41,6 +42,7 @@ public class BossMonster extends Monster {
 			}
 		}
 		if (Archer.hitPoint <= 0) {
+			System.out.println();
 			System.out.println("아처가 사망했습니다.");
 
 		}
@@ -52,7 +54,7 @@ public class BossMonster extends Monster {
 		Thread.sleep(4000);
 		MusicThread.BallockSwingTailClose();
 
-		Archer.hitPoint = Archer.hitPoint - (Archer.defensivePower - swingTail);
+		Archer.hitPoint = Archer.hitPoint - (swingTail - Archer.defensivePower);
 		while (Archer.hitPoint > 0) {
 			if (Archer.hitPoint > 0) {
 
@@ -64,6 +66,7 @@ public class BossMonster extends Monster {
 			}
 		}
 		if (Archer.hitPoint <= 0) {
+			System.out.println();
 			System.out.println("아처가 사망했습니다.");
 		}
 	}
@@ -74,7 +77,7 @@ public class BossMonster extends Monster {
 		MusicThread.BallockEnergyExplosionClose();
 		
 
-		Archer.hitPoint = Archer.hitPoint - (Archer.defensivePower - energyExplosion);
+		Archer.hitPoint = Archer.hitPoint - (energyExplosion - Archer.defensivePower);
 
 		while (Archer.hitPoint > 0) {
 			if (Archer.hitPoint > 0) {
@@ -87,6 +90,7 @@ public class BossMonster extends Monster {
 			}
 		}
 		if (Archer.hitPoint <= 0) {
+			System.out.println();
 			System.out.println("아처가 사망했습니다.");
 		}
 	}

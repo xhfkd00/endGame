@@ -10,14 +10,18 @@ public class EventThread extends Thread {
 	
 
 	Character Character = new Character(); 
+	MusicThread MusicThread = new MusicThread();
 
 	@Override
 	public void run() {
 		
 		try {
-			Thread.sleep(20000);
+			Thread.sleep(180000);
+			MusicThread.EventGold();
+			Thread.sleep(2000);
+			MusicThread.EventGoldClose();
 			System.out.println();
-			System.out.println("접속한지 5분이 지났습니다.");
+			System.out.println("접속한지 3분이 지났습니다.");
 			System.out.println();
 			System.out.println("추가 골드 "+Character.eventGold+"골드를 얻습니다.");
 			Archer.gold = Archer.gold + Character.eventGold;

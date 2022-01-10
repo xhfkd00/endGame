@@ -18,6 +18,8 @@ public class MusicThread extends Thread {
 	Clip ballockEnergyExplosion;
 	Clip attack;
 	Clip ballockAttack;
+	Clip done;
+	Clip eventGold;
 
 	@Override
 	public void run() {
@@ -222,5 +224,47 @@ public class MusicThread extends Thread {
 
 	public void BallockAttackClose() {
 		ballockAttack.stop();
+	}
+	
+	
+	public void Done() {
+		try {
+
+			AudioInputStream DoneMusic = AudioSystem
+					.getAudioInputStream(new File("C:\\Users\\MYCOM\\Desktop\\พ๎ด๐ลอม๎\\mugic\\done.wav"));
+			done = AudioSystem.getClip();
+			done.open(DoneMusic);
+			done.start();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void DoneClose() {
+		ballockAttack.stop();
+	}
+	
+	
+	public void EventGold() {
+		try {
+
+			AudioInputStream EventGoldMusic = AudioSystem
+					.getAudioInputStream(new File("C:\\Users\\MYCOM\\Desktop\\พ๎ด๐ลอม๎\\mugic\\event.wav"));
+			eventGold = AudioSystem.getClip();
+			eventGold.open(EventGoldMusic);
+			eventGold.start();
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	public void EventGoldClose() {
+		eventGold.stop();
 	}
 }
